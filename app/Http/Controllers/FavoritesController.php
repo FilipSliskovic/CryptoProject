@@ -112,14 +112,14 @@ class FavoritesController extends FrontEndController
            }
             if (!in_array($symbol , session('Favorites'))) {
 
-                return redirect()->back()->with('error', 'The symbol you want to delete is not in the favorites.');
+                return redirect()->back()->with('error', 'The pair you want to delete is not in the favorites.');
             }
             $array = \session('Favorites');
             $key = array_search($symbol,$array);
             unset($array[$key]);
             $array = array_values($array);
             \session(['Favorites' => $array]);
-            return redirect()->back()->with('success-msg', 'The symbol has been removed from your favorites.');
+            return redirect()->back()->with('success-msg', 'The pair has been removed from your favorites.');
         }
         catch (\Exception $e)
         {

@@ -55,11 +55,12 @@
 {{--                @if(session()->get("Favorites"))--}}
 {{--                    {{dd(session()->get("Favorites"))}}--}}
 {{--                @endif--}}
+                @if(session('User'))
                 @if(in_array($symbol,session('Favorites', [])))
                     <form method="POST" action="{{ route('Favorite-destroy', ['symbol' => $symbol]) }}">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete from favorites</button>
                     </form>
                 @else
                     <form name="addToFavorite"  action="{{route('Favorite-store')}}" method="post" >
@@ -67,6 +68,7 @@
                         <input hidden value="{{$symbol}}" name="symbol">
                         <button type="submit" class="btn btn-primary">Add to favorites</button>
                     </form>
+                @endif
                 @endif
 
 {{--                {{dd(session()->get("Favorites"))}}--}}
